@@ -4,7 +4,7 @@
 <path d="M500 0L0 0L0 333L500 333L500 0Z" fill="white"/>
 </mask>
 <g mask="url(#mask0_9213_203)">
-<path d="M0 333L500 333L500 0L0 0L0 333Z" fill="#F5F7F9"/>
+<path d="M0 333L500 333L500 0L0 0L0 333Z" fill="none"/>
 </g>
 <mask id="mask1_9213_203" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="500" height="333">
 <path d="M0 333L500 333L500 0L0 0L0 333Z" fill="white"/>

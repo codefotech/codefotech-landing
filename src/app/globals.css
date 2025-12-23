@@ -17,5 +17,5 @@
 }
 
 body {
-  @apply bg-white text-text-dark;
+  @apply bg-bg-light text-text-dark;
 }
