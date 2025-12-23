@@ -1,6 +1,7 @@
 import Banner from "@/components/screens/Home/Banner";
 import TrustedBy from "@/components/screens/Home/TrustedBy";
 import WhoWeAre from "@/components/screens/Home/WhoWeAre";
+import OurCoreServices from "@/components/screens/Home/OurCoreServices";
 import Container from "@/components/shared/Container";
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
       </div>
       <Container>
         <WhoWeAre />
+        <OurCoreServices />
       </Container>
     </>
   );

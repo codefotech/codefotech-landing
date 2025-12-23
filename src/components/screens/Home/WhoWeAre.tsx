@@ -67,7 +67,7 @@ const WhoWeAre = () => {
   ];
 
   return (
-    <section className="py-16 relative">
+    <section className="pt-16 relative">
       <div className="bg-white rounded-xl p-8 flex flex-col lg:flex-row items-end justify-between gap-8 relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-40 items-start flex-1">
           {/* Left Content */}
