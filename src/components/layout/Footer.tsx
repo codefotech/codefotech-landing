@@ -16,14 +16,16 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="#"
+                href="https://www.linkedin.com/company/codefotech"
+                target="_blank"
                 className="p-2 bg-muted rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
-                href="#"
+                href="https://x.com/codefotech"
+                target="_blank"
                 className="p-2 bg-muted rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors"
                 aria-label="Twitter"
               >
