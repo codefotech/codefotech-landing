@@ -188,8 +188,7 @@ const Footer = () => {
                     </p>
                   </div>
                   <ul className="space-y-1 text-sm text-muted-foreground">
-                    <li>62–63, Sana Kalyan Business Center</li>
-                    <li>(8th Floor)</li>
+                    <li>62–63, Sana Kalyan Business Center (8th Floor)</li>
                     <li>M–701/B, Motijheel B/A</li>
                     <li>Dhaka–1000, Bangladesh</li>
                     <li className="pt-1">
