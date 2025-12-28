@@ -26,7 +26,7 @@ const trustedCompanies = [
   },
   {
     name: "EasyISP",
-    logo: "/Trusted/easyisp.png",
+    logo: "/Trusted/easyisp.webp",
   },
 ];
 

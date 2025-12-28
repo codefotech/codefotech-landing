@@ -163,7 +163,7 @@ const About = () => {
                   <h3 className="text-xl font-semibold text-foreground">
                     {member.name}
                   </h3>
-                  <p className="text-muted-foreground text-sm uppercase tracking-wide">
+                  <p className="text-muted-foreground text-sm capitalize tracking-wide">
                     {member.role}
                   </p>
                 </div>

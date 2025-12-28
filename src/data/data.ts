@@ -83,6 +83,12 @@ export const teamMembers: TeamMember[] = [
     role: "Full Stack Developer",
     image: "/team/salman.jpg",
   },
+  {
+    id: "3",
+    name: "Khadiza Akter",
+    role: "Content Writer Specialist",
+    image: "/team/khadiza.png",
+  },
 ];
 
 export const services: Service[] = [
