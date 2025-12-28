@@ -86,8 +86,20 @@ export const teamMembers: TeamMember[] = [
   {
     id: "3",
     name: "Khadiza Akter",
-    role: "Content Writer Specialist",
+    role: "Business Development Executive",
     image: "/team/khadiza.png",
+  },
+  {
+    id: "4",
+    name: "MD Sumon",
+    role: "Frontend & Wordpress Developer",
+    image: "/team/sumon.png",
+  },
+  {
+    id: "5",
+    name: "MD Nayem Mir",
+    role: "UX/UI Designer",
+    image: "/team/nayem.png",
   },
 ];
 
