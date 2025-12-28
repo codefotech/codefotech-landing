@@ -62,6 +62,29 @@ export interface BlogPost {
   image: string;
 }
 
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  bgColor?: string;
+}
+
+export const teamMembers: TeamMember[] = [
+  {
+    id: "1",
+    name: "MD Seam Uddin",
+    role: "Founder & CEO",
+    image: "/team/seam_bhai.jpg",
+  },
+  {
+    id: "2",
+    name: "MD Salman Farshi",
+    role: "Full Stack Developer",
+    image: "/team/salman.jpg",
+  },
+];
+
 export const services: Service[] = [
   {
     id: "web-mobile",
