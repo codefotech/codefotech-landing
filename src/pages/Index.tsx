@@ -16,7 +16,7 @@ const Index = () => {
         <TrustedBySection />
         <ServicesPreview />
         <StatsSection />
-        {/* <TestimonialsSection /> */}
+        <TestimonialsSection />
         <CTASection />
       </main>
       <Footer />
