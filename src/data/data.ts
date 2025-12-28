@@ -91,12 +91,18 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: "4",
+    name: "Khaled Mosaraf",
+    role: "Market Research & Strategy Advisor",
+    image: "/team/khaled.png",
+  },
+  {
+    id: "5",
     name: "MD Sumon",
     role: "Frontend & Wordpress Developer",
     image: "/team/sumon.png",
   },
   {
-    id: "5",
+    id: "6",
     name: "MD Nayem Mir",
     role: "UX/UI Designer",
     image: "/team/nayem.png",
