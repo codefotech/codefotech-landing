@@ -23,10 +23,10 @@ const contactInfo = [
     title: "Bangladesh Office",
     phone: "+8801961185367",
     details: [
-      "62-63, SENA KALYAN",
-      "BUSINESS CENTER (8TH FLOOR)",
-      "M-701/B, MITIJHAL C/A,",
-      "DHAKA-1000",
+      "62–63, Sana Kalyan Business Center",
+      "(8th Floor)",
+      "M–701/B, Motijheel B/A",
+      "Dhaka–1000, Bangladesh",
     ],
   },
   {
