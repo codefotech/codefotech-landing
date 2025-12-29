@@ -32,16 +32,31 @@ export interface OffshorePackage {
   features: string[];
   popular?: boolean;
 }
-
+// Job Vacancy Status Enum
+export enum JobVacancyStatus {
+  OPEN = 'open',
+  CLOSED = 'closed',
+}
 export interface Job {
-  id: string;
+  _id: string;
   title: string;
   department: string;
-  location: string;
-  type: string;
-  experience: string;
   description: string;
+  skills: string[];
   requirements: string[];
+  keyResponsibilities: string[];
+  whatWeOffer: string[];
+  openPositions: number;
+  status: JobVacancyStatus;
+  createdAt: Date;
+  updatedAt: Date;
+
+  salary: string;
+  salaryCurrency: string;
+  deadline: Date;
+  jobType: string;
+  location?: string;
+  locationType: string;
 }
 
 export interface BlogPost {

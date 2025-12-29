@@ -1,15 +1,19 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import bannerCareer from "@/assets/banner-career.png";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import Container from "@/components/shared/Container";
 import PageBanner from "@/components/shared/PageBanner";
-import { jobs } from "@/data/data";
+import careerService from "@/services/career.service";
+import { JobVacancy, JobVacancyStatus } from "@/types/career.types";
 import {
   Briefcase,
   Clock,
   Coffee,
   Globe,
   Heart,
+  Loader2,
   MapPin,
   Users,
   Zap,
@@ -33,6 +37,30 @@ const perks = [
 ];
 
 const Career = () => {
+  const [jobs, setJobs] = useState<JobVacancy[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setLoading(true);
+        const response = await careerService.getJobVacancies({
+          status: JobVacancyStatus.OPEN,
+          limit: 50,
+        });
+        setJobs(response.data.docs);
+      } catch (err) {
+        setError("Failed to load job vacancies. Please try again later.");
+        console.error("Error fetching jobs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -77,7 +105,18 @@ const Career = () => {
               </p>
             </div>
 
-            {jobs.length === 0 ? (
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <span className="ml-3 text-muted-foreground">
+                  Loading positions...
+                </span>
+              </div>
+            ) : error ? (
+              <div className="text-center py-12 px-6 rounded-xl border border-destructive/20 bg-destructive/5">
+                <p className="text-destructive">{error}</p>
+              </div>
+            ) : jobs.length === 0 ? (
               <div className="text-center py-12 px-6 rounded-xl border border-border bg-card">
                 <div className="max-w-2xl mx-auto">
                   <h3 className="text-xl font-semibold text-foreground mb-3">
@@ -107,7 +146,7 @@ const Career = () => {
               <div className="space-y-4">
                 {jobs.map((job) => (
                   <div
-                    key={job.id}
+                    key={job._id}
                     className="p-6 rounded-xl border border-border bg-card hover:border-primary/20 transition-colors"
                   >
                     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
@@ -115,16 +154,16 @@ const Career = () => {
                         <h3 className="text-lg font-semibold text-foreground">
                           {job.title}
                         </h3>
-                        <p className="text-muted-foreground text-sm mt-1">
+                        <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
                           {job.description}
                         </p>
                       </div>
-                      <a
-                        href={`mailto:careers@codefotech.com?subject=Application for ${job.title}`}
+                      <Link
+                        to={`/career/${job._id}`}
                         className="inline-flex items-center justify-center bg-primary text-primary-foreground px-6 py-2.5 rounded-lg font-medium text-sm transition-colors hover:opacity-90 whitespace-nowrap"
                       >
-                        Apply Now
-                      </a>
+                        View & Apply
+                      </Link>
                     </div>
 
                     <div className="flex flex-wrap gap-3">
@@ -134,14 +173,16 @@ const Career = () => {
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-muted rounded-md text-xs text-muted-foreground">
                         <MapPin className="h-3.5 w-3.5" />
-                        {job.location}
+                        {job.locationType}
+                        {job.location && ` • ${job.location}`}
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-muted rounded-md text-xs text-muted-foreground">
                         <Clock className="h-3.5 w-3.5" />
-                        {job.type}
+                        {job.jobType}
                       </span>
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 border border-primary/20 rounded-md text-xs text-primary font-medium">
-                        {job.experience}
+                        {job.openPositions} Opening
+                        {job.openPositions > 1 ? "s" : ""}
                       </span>
                     </div>
                   </div>
