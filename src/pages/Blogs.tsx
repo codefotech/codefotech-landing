@@ -8,7 +8,15 @@ import FeaturedBlogSkeleton from "@/components/blog/FeaturedBlogSkeleton";
 import blogService from "@/services/blog.service";
 import type { Blog, BlogListData } from "@/types/blog.types";
 import { calculateReadTime, getImageUrl } from "@/lib/utils";
-import { ArrowRight, Calendar, Clock, User, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  User,
+  ChevronLeft,
+  ChevronRight,
+  Search,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import bannerServices from "@/assets/banner-services.png";
 import { useState, useEffect, useCallback } from "react";
@@ -17,36 +25,79 @@ const ITEMS_PER_PAGE = 10;
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [paginationData, setPaginationData] = useState<BlogListData | null>(null);
+  const [paginationData, setPaginationData] = useState<BlogListData | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [categories, setCategories] = useState<string[]>([]);
 
-  const fetchBlogs = useCallback(async (page: number) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await blogService.getPublishedBlogs({
-        page,
-        limit: ITEMS_PER_PAGE,
-      });
-      setBlogs(response.data.docs);
-      setPaginationData(response.data);
-    } catch (err) {
-      setError("Failed to load blogs. Please try again later.");
-      console.error("Error fetching blogs:", err);
-    } finally {
-      setIsLoading(false);
-    }
+  const fetchBlogs = useCallback(
+    async (page: number, query: string, category: string) => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await blogService.getPublishedBlogs({
+          page,
+          limit: ITEMS_PER_PAGE,
+          isPublished: true,
+          q: query,
+          category: category,
+        });
+        setBlogs(response.data.docs);
+        setPaginationData(response.data);
+      } catch (err) {
+        setError("Failed to load blogs. Please try again later.");
+        console.error("Error fetching blogs:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  // Debounce search query
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  // Fetch categories on mount
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await blogService.getAllCategories();
+        setCategories(response.data.categories);
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+      }
+    };
+    fetchCategories();
   }, []);
 
+  // Fetch blogs when filters change
   useEffect(() => {
-    fetchBlogs(currentPage);
-  }, [currentPage, fetchBlogs]);
+    setCurrentPage(1); // Reset to page 1 when filters change
+  }, [debouncedSearchQuery, selectedCategory]);
+
+  useEffect(() => {
+    fetchBlogs(currentPage, debouncedSearchQuery, selectedCategory);
+  }, [currentPage, debouncedSearchQuery, selectedCategory, fetchBlogs]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
   };
 
   const formatDate = (dateString: string) => {
@@ -70,7 +121,14 @@ const Blogs = () => {
       if (page <= 3) {
         pages.push(1, 2, 3, 4, "...", totalPages);
       } else if (page >= totalPages - 2) {
-        pages.push(1, "...", totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+        pages.push(
+          1,
+          "...",
+          totalPages - 3,
+          totalPages - 2,
+          totalPages - 1,
+          totalPages
+        );
       } else {
         pages.push(1, "...", page - 1, page, page + 1, "...", totalPages);
       }
@@ -133,6 +191,48 @@ const Blogs = () => {
         {/* Blog Listing */}
         <section className="py-16 lg:py-24">
           <Container>
+            {/* Search and Filter Section */}
+            <div className="mb-12 space-y-6">
+              {/* Search Input */}
+              <div className="relative max-w-2xl mx-auto">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border border-border bg-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                />
+              </div>
+
+              {/* Category Tabs */}
+              <div className="flex flex-wrap gap-2 justify-center">
+                <button
+                  onClick={() => handleCategoryChange("")}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedCategory === ""
+                      ? "bg-primary text-primary-foreground"
+                      : "border border-border bg-card hover:bg-muted text-foreground"
+                  }`}
+                >
+                  All Categories
+                </button>
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => handleCategoryChange(category)}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      selectedCategory === category
+                        ? "bg-primary text-primary-foreground"
+                        : "border border-border bg-card hover:bg-muted text-foreground"
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             {/* Error State */}
             {error && (
               <div className="text-center py-12 px-6 rounded-xl border border-destructive/20 bg-destructive/5 mb-8">
@@ -141,7 +241,13 @@ const Blogs = () => {
                 </h3>
                 <p className="text-muted-foreground mb-6">{error}</p>
                 <button
-                  onClick={() => fetchBlogs(currentPage)}
+                  onClick={() =>
+                    fetchBlogs(
+                      currentPage,
+                      debouncedSearchQuery,
+                      selectedCategory
+                    )
+                  }
                   className="inline-flex items-center justify-center bg-primary text-primary-foreground px-6 py-2.5 rounded-lg font-medium text-sm transition-colors hover:opacity-90"
                 >
                   Try Again
@@ -256,7 +362,7 @@ const Blogs = () => {
                           </div>
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-medium">
-                              CF
+                              <img src="/logo-icon.svg" alt="CodeFoTech" />
                             </div>
                             <div>
                               <p className="text-sm font-medium text-foreground">

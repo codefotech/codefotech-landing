@@ -53,4 +53,7 @@ export interface BlogDetailResponse {
 export interface BlogQueryParams {
   page?: number;
   limit?: number;
+  q?: string;
+  category?: string;
+  isPublished: true;
 }
