@@ -48,34 +48,66 @@ const Services = () => {
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
-              {services.map((service) => (
-                <div
-                  key={service.id}
-                  className="p-8 rounded-xl border border-border bg-card hover:border-primary/20 transition-colors"
-                >
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    {service.description}
-                  </p>
+              {services.map((service) => {
+                // Map service IDs to product category IDs
+                const productCategoryMap: Record<string, string> = {
+                  ecommerce: "ecommerce",
+                  lms: "lms",
+                  erp: "erp",
+                  healthcare: "healthcare",
+                };
+                const productCategoryId = productCategoryMap[service.id];
+                const hasProductLink = !!productCategoryId;
 
-                  <div className="grid grid-cols-2 gap-2">
-                    {service.features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
-                      >
-                        <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                        <span>{feature}</span>
+                const cardContent = (
+                  <>
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
+                      <service.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                      {service.description}
+                    </p>
+
+                    <div className="grid grid-cols-2 gap-2 mb-6">
+                      {service.features.map((feature, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2 text-sm text-muted-foreground"
+                        >
+                          <Check className="h-4 w-4 text-primary flex-shrink-0" />
+                          <span>{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {hasProductLink && (
+                      <div className="flex items-center gap-2 text-primary text-sm font-medium group-hover:gap-3 transition-all">
+                        View Products <ArrowRight className="h-4 w-4" />
                       </div>
-                    ))}
+                    )}
+                  </>
+                );
+
+                return hasProductLink ? (
+                  <Link
+                    key={service.id}
+                    to={`/products?category=${productCategoryId}`}
+                    className="group p-8 rounded-xl border border-border bg-card hover:border-primary/20 hover:shadow-lg transition-all"
+                  >
+                    {cardContent}
+                  </Link>
+                ) : (
+                  <div
+                    key={service.id}
+                    className="group p-8 rounded-xl border border-border bg-card hover:border-primary/20 transition-colors"
+                  >
+                    {cardContent}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </Container>
         </section>

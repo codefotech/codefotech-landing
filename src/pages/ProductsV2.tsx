@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import Container from "@/components/shared/Container";
@@ -9,16 +9,18 @@ import {
   getHighlightedProducts,
   type SoftwareProduct,
   type ProductCategory,
-  type ProductSubcategory,
 } from "@/data/products.data";
 import { Check, ArrowRight, Search, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import bannerProducts from "@/assets/banner-products.png";
 
 const Products = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [selectedSubcategory, setSelectedSubcategory] = useState<string>("all");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  // Get filter values from URL query params
+  const selectedCategory = searchParams.get("category") || "all";
+  const selectedSubcategory = searchParams.get("subcategory") || "all";
 
   // Get current category object
   const currentCategory = useMemo(() => {
@@ -72,16 +74,36 @@ const Products = () => {
     searchQuery,
   ]);
 
-  // Handle category change
-  const handleCategoryChange = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-    setSelectedSubcategory("all");
-  };
+  // Handle category change - update URL query params
+  const handleCategoryChange = useCallback(
+    (categoryId: string) => {
+      if (categoryId === "all") {
+        // Remove both params when selecting "all"
+        setSearchParams({});
+      } else {
+        // Set category, remove subcategory
+        setSearchParams({ category: categoryId });
+      }
+    },
+    [setSearchParams]
+  );
 
-  // Handle subcategory change
-  const handleSubcategoryChange = (subcategoryId: string) => {
-    setSelectedSubcategory(subcategoryId);
-  };
+  // Handle subcategory change - update URL query params
+  const handleSubcategoryChange = useCallback(
+    (subcategoryId: string) => {
+      if (subcategoryId === "all") {
+        // Keep only category param
+        setSearchParams({ category: selectedCategory });
+      } else {
+        // Set both category and subcategory
+        setSearchParams({
+          category: selectedCategory,
+          subcategory: subcategoryId,
+        });
+      }
+    },
+    [setSearchParams, selectedCategory]
+  );
 
   // Get section title based on selection
   const getSectionTitle = () => {
