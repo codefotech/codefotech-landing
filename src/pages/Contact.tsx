@@ -10,6 +10,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import bannerContact from "@/assets/banner-contact.png";
 import { useLocation } from "react-router-dom";
+import contactService from "@/services/contact.service";
 
 const contactInfo = [
   {
@@ -47,11 +48,14 @@ const Contact = () => {
 
   const [formData, setFormData] = useState({
     name: "",
+    phone: "",
     email: "",
     company: "",
     subject: "",
     message: "",
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // Prefill subject if coming from a package selection
   useEffect(() => {
@@ -72,20 +76,39 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent",
-      description:
-        "Thank you for reaching out. We'll get back to you within 24 hours.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      subject: "",
-      message: "",
-    });
+    setIsLoading(true);
+
+    try {
+      await contactService.contact(formData);
+
+      toast({
+        title: "Message Sent Successfully",
+        description:
+          "Thank you for reaching out. We'll get back to you within 24 hours.",
+      });
+
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        company: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Failed to Send Message",
+        description:
+          error?.response?.data?.message ||
+          "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -144,6 +167,19 @@ const Contact = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
+                        <Label htmlFor="phone" className="text-sm font-medium">
+                          Phone
+                        </Label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="e.g. +1 XXX XXX XXXX"
+                          className="bg-background border-border"
+                        />
+                      </div>
+                      <div className="space-y-2">
                         <Label
                           htmlFor="company"
                           className="text-sm font-medium"
@@ -159,7 +195,7 @@ const Contact = () => {
                           className="bg-background border-border"
                         />
                       </div>
-                      <div className="space-y-2">
+                      <div className="space-y-2 col-span-2">
                         <Label
                           htmlFor="subject"
                           className="text-sm font-medium"
@@ -196,13 +232,14 @@ const Contact = () => {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center text-primary-foreground px-8 py-3 rounded-lg font-medium text-base transition-all duration-150 hover:opacity-90"
+                      disabled={isLoading}
+                      className="inline-flex items-center justify-center text-primary-foreground px-8 py-3 rounded-lg font-medium text-base transition-all duration-150 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
                       style={{
                         background:
                           "linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--secondary)))",
                       }}
                     >
-                      Send Message
+                      {isLoading ? "Sending..." : "Send Message"}
                     </button>
                   </form>
                 </div>
