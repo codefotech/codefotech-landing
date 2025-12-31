@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Container from "./Container";
 
 interface PageBannerProps {
@@ -5,11 +6,23 @@ interface PageBannerProps {
   subtitle: string;
   image: string;
   imageAlt: string;
+  containerClassName?: string;
 }
 
-const PageBanner = ({ title, subtitle, image, imageAlt }: PageBannerProps) => {
+const PageBanner = ({
+  title,
+  subtitle,
+  image,
+  imageAlt,
+  containerClassName,
+}: PageBannerProps) => {
   return (
-    <section className="py-16 lg:py-20 bg-muted/30 border-b border-border overflow-hidden">
+    <section
+      className={cn(
+        "py-16 lg:py-20 bg-muted/30 border-b border-border overflow-hidden",
+        containerClassName
+      )}
+    >
       <Container>
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left: Text Content */}
@@ -21,7 +34,7 @@ const PageBanner = ({ title, subtitle, image, imageAlt }: PageBannerProps) => {
               {subtitle}
             </p>
           </div>
-          
+
           {/* Right: Illustration */}
           <div className="hidden lg:flex justify-end">
             <div className="relative w-full max-w-md">

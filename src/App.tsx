@@ -7,7 +7,7 @@ import ScrollToTop from "./components/shared/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Products from "./pages/Products";
+import Products from "./pages/ProductsV2";
 import Career from "./pages/Career";
 import CareerDetails from "./pages/CareerDetails";
 import Contact from "./pages/Contact";
