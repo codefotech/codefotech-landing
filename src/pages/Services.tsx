@@ -9,6 +9,21 @@ import { Check, ArrowRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import bannerServices from "@/assets/banner-services.png";
 import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+
+// Service images mapping - using placeholder images for each service type
+const serviceImages: Record<string, string> = {
+  "web-mobile":
+    "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
+  "ai-solutions":
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+  ecommerce:
+    "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+  lms: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80",
+  erp: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+  "ui-ux":
+    "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80",
+};
 
 const Services = () => {
   const location = useLocation();
@@ -24,6 +39,14 @@ const Services = () => {
     }
   }, [location]);
 
+  // Map service IDs to product category IDs
+  const productCategoryMap: Record<string, string> = {
+    ecommerce: "ecommerce",
+    lms: "lms",
+    erp: "erp",
+    healthcare: "healthcare",
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Header />
@@ -35,82 +58,122 @@ const Services = () => {
           imageAlt="Abstract service ecosystem illustration"
         />
 
-        {/* Services Grid */}
-        <section className="py-16 lg:py-24">
-          <Container>
-            <div className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                What We Do
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl">
-                Comprehensive software development services tailored for
-                enterprise organizations and growing businesses.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-6">
-              {services.map((service) => {
-                // Map service IDs to product category IDs
-                const productCategoryMap: Record<string, string> = {
-                  ecommerce: "ecommerce",
-                  lms: "lms",
-                  erp: "erp",
-                  healthcare: "healthcare",
-                };
-                const productCategoryId = productCategoryMap[service.id];
-                const hasProductLink = !!productCategoryId;
+        {/* Services Sections - New Design */}
+        {services.map((service, serviceIndex) => {
+          const productCategoryId = productCategoryMap[service.id];
+          const hasProductLink = !!productCategoryId;
+          const isEven = serviceIndex % 2 === 0;
 
-                const cardContent = (
-                  <>
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6">
-                      <service.icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+          return (
+            <section
+              key={service.id}
+              id={service.id}
+              className={`py-16 lg:py-24 ${
+                isEven ? "bg-muted/40" : "bg-background"
+              }`}
+            >
+              <Container>
+                <div
+                  className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
+                    isEven ? "" : "lg:flex-row-reverse"
+                  }`}
+                >
+                  {/* Left Column - Content */}
+                  <div
+                    className={`${isEven ? "order-1" : "order-1 lg:order-2"}`}
+                  >
+                    {/* Section Title */}
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
                       {service.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                    </h2>
+
+                    {/* Subtitle/Tagline */}
+                    <p className="text-lg text-primary font-medium mb-4">
+                      {service.id === "web-mobile" &&
+                        "Custom Web & Mobile App Development for Businesses"}
+                      {service.id === "ai-solutions" &&
+                        "Intelligent Solutions for Modern Enterprises"}
+                      {service.id === "ecommerce" &&
+                        "Complete E-commerce Solutions for Online Success"}
+                      {service.id === "lms" &&
+                        "Next-Generation Learning Management Systems"}
+                      {service.id === "erp" &&
+                        "Unified Business Management Solutions"}
+                      {service.id === "ui-ux" &&
+                        "User-Centered Design for Digital Products"}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-muted-foreground leading-relaxed mb-8">
                       {service.description}
                     </p>
 
-                    <div className="grid grid-cols-2 gap-2 mb-6">
+                    {/* Features List */}
+                    <div className="space-y-0 mb-8">
                       {service.features.map((feature, idx) => (
                         <div
                           key={idx}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
+                          className="group flex items-center justify-between py-4 border-b border-border/50 hover:border-primary/30 transition-colors cursor-pointer"
                         >
-                          <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span>{feature}</span>
+                          <div className="flex items-center gap-4">
+                            <span className="text-muted-foreground/60 font-medium text-sm w-8">
+                              {String(idx + 1).padStart(2, "0")}
+                            </span>
+                            <span className="text-foreground font-medium group-hover:text-primary transition-colors">
+                              {feature}
+                            </span>
+                          </div>
+                          <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
                         </div>
                       ))}
                     </div>
 
-                    {hasProductLink && (
-                      <div className="flex items-center gap-2 text-primary text-sm font-medium group-hover:gap-3 transition-all">
-                        View Products <ArrowRight className="h-4 w-4" />
-                      </div>
+                    {/* CTA Button */}
+                    {hasProductLink ? (
+                      <Link to={`/products?category=${productCategoryId}`}>
+                        <Button className="rounded-full px-8 py-6 text-base font-medium">
+                          See more
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link to="/contact">
+                        <Button className="rounded-full px-8 py-6 text-base font-medium">
+                          See more
+                        </Button>
+                      </Link>
                     )}
-                  </>
-                );
-
-                return hasProductLink ? (
-                  <Link
-                    key={service.id}
-                    to={`/products?category=${productCategoryId}`}
-                    className="group p-8 rounded-xl border border-border bg-card hover:border-primary/20 hover:shadow-lg transition-all"
-                  >
-                    {cardContent}
-                  </Link>
-                ) : (
-                  <div
-                    key={service.id}
-                    className="group p-8 rounded-xl border border-border bg-card hover:border-primary/20 transition-colors"
-                  >
-                    {cardContent}
                   </div>
-                );
-              })}
-            </div>
-          </Container>
-        </section>
+
+                  {/* Right Column - Image */}
+                  <div
+                    className={`${isEven ? "order-2" : "order-2 lg:order-1"}`}
+                  >
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                      <img
+                        src={serviceImages[service.id]}
+                        alt={service.title}
+                        className="w-full h-[400px] lg:h-[500px] object-cover"
+                      />
+                      {/* Floating elements for visual interest */}
+                      <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg">
+                        <span className="text-yellow-500">★</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          4.9
+                        </span>
+                      </div>
+                      <div className="absolute bottom-4 left-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1.5 flex items-center gap-1.5 shadow-lg">
+                        <span className="text-yellow-500">★</span>
+                        <span className="text-sm font-semibold text-foreground">
+                          4.8
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Container>
+            </section>
+          );
+        })}
 
         {/* Remote Teams Trigger Section */}
         <RemoteTeamsTrigger />

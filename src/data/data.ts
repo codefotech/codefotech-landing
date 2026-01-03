@@ -34,8 +34,8 @@ export interface OffshorePackage {
 }
 // Job Vacancy Status Enum
 export enum JobVacancyStatus {
-  OPEN = 'open',
-  CLOSED = 'closed',
+  OPEN = "open",
+  CLOSED = "closed",
 }
 export interface Job {
   _id: string;
@@ -402,4 +402,3 @@ export const testimonials = [
     avatar: "ER",
   },
 ];
-
