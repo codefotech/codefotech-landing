@@ -7,7 +7,8 @@ import ScrollToTop from "./components/shared/ScrollToTop";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Products from "./pages/ProductsV2";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
 import Career from "./pages/Career";
 import CareerDetails from "./pages/CareerDetails";
 import Contact from "./pages/Contact";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/career" element={<Career />} />
           <Route path="/career/:id" element={<CareerDetails />} />
           <Route path="/blogs" element={<Blogs />} />

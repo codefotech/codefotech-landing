@@ -784,3 +784,35 @@ export const getProductsBySubcategory = (
 
   return subcategory.products;
 };
+
+// Helper function to get a product by ID
+export const getProductById = (
+  productId: string
+): {
+  product: SoftwareProduct;
+  category: ProductCategory;
+  subcategory: ProductSubcategory;
+} | null => {
+  for (const category of productCategories) {
+    for (const subcategory of category.subcategories) {
+      const product = subcategory.products.find((p) => p.id === productId);
+      if (product) {
+        return { product, category, subcategory };
+      }
+    }
+  }
+  return null;
+};
+
+// Helper function to get related products (from same subcategory)
+export const getRelatedProducts = (
+  productId: string,
+  limit: number = 3
+): SoftwareProduct[] => {
+  const result = getProductById(productId);
+  if (!result) return [];
+
+  return result.subcategory.products
+    .filter((p) => p.id !== productId)
+    .slice(0, limit);
+};
