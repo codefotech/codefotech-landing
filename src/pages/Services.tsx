@@ -1,15 +1,15 @@
-import Header from "@/components/layout/Header";
+import bannerServices from "@/assets/banner-services.png";
+import CTASection from "@/components/home/CTASection";
 import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import RemoteTeamsTrigger from "@/components/services/RemoteTeamsTrigger";
 import Container from "@/components/shared/Container";
 import PageBanner from "@/components/shared/PageBanner";
-import RemoteTeamsTrigger from "@/components/services/RemoteTeamsTrigger";
-import CTASection from "@/components/home/CTASection";
-import { services, offshorePackages } from "@/data/data";
-import { Check, ArrowRight } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import bannerServices from "@/assets/banner-services.png";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { offshorePackages, services } from "@/data/data";
+import { ArrowRight, Check } from "lucide-react";
+import { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 // Service images mapping - using placeholder images for each service type
 const serviceImages: Record<string, string> = {
@@ -136,7 +136,12 @@ const Services = () => {
                         </Button>
                       </Link>
                     ) : (
-                      <Link to="/contact">
+                      <Link
+                        to="/contact"
+                        state={{
+                          contactSubject: `Inquiry about ${service.title} service`,
+                        }}
+                      >
                         <Button className="rounded-full px-8 py-6 text-base font-medium">
                           See more
                         </Button>
@@ -234,7 +239,9 @@ const Services = () => {
 
                   <Link
                     to="/contact"
-                    state={{ packageName: pkg.name }}
+                    state={{
+                      contactSubject: `Discuss for ${pkg.name} package`,
+                    }}
                     className={`w-full inline-flex justify-center items-center gap-2 py-3 px-6 rounded-lg font-medium text-sm transition-colors ${
                       pkg.popular
                         ? "bg-primary text-primary-foreground hover:opacity-90"

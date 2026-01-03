@@ -44,7 +44,8 @@ const contactInfo = [
 
 const Contact = () => {
   const location = useLocation();
-  const packageName = (location.state as { packageName?: string })?.packageName;
+  const contactSubject = (location.state as { contactSubject?: string })
+    ?.contactSubject;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -59,13 +60,13 @@ const Contact = () => {
 
   // Prefill subject if coming from a package selection
   useEffect(() => {
-    if (packageName) {
+    if (contactSubject) {
       setFormData((prev) => ({
         ...prev,
-        subject: `Discuss for ${packageName} package`,
+        subject: contactSubject,
       }));
     }
-  }, [packageName]);
+  }, [contactSubject]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
