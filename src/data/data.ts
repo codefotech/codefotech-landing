@@ -104,10 +104,22 @@ export const teamMembers: TeamMember[] = [
     image: "/team/khadiza.png",
   },
   {
+    id: "73",
+    name: "K M Sadidur Rahman",
+    role: "Business Development Executive",
+    image: "/team/sadidur.png",
+  },
+  {
     id: "4",
     name: "Khaled Mosaraf",
     role: "Market Research & Strategy Advisor",
     image: "/team/khaled.png",
+  },
+  {
+    id: "33",
+    name: "Md. Shahoraiar Hossain",
+    role: "Software Developer",
+    image: "/team/shahoraiar.png",
   },
   {
     id: "43",
