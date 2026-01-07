@@ -43,6 +43,17 @@ const blogService = {
     return response.data;
   },
 
+  // Get categories with blogs
+  getBlogsByCategory: async (
+    category: string,
+    params: BlogQueryParams
+  ): Promise<BlogListResponse> => {
+    const response = await axiosInstance.get(`/blogs/category/${category}`, {
+      params,
+    });
+    return response.data;
+  },
+
   /**
    * Get blogs by tag with pagination
    */

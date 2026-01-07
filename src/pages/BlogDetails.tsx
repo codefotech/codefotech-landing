@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 const BlogDetails = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  
+
   const [blog, setBlog] = useState<Blog | null>(null);
   const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,18 +30,18 @@ const BlogDetails = () => {
 
       setIsLoading(true);
       setError(null);
-      
+
       try {
         const response = await blogService.getBlogBySlug(slug);
         setBlog(response.data.blog);
-        
+
         // Fetch related blogs by category
         if (response.data.blog.category) {
           setIsLoadingRelated(true);
           try {
             const relatedResponse = await blogService.getBlogsByCategory(
               response.data.blog.category,
-              { page: 1, limit: 4 }
+              { page: 1, limit: 4, isPublished: true }
             );
             // Filter out current blog and limit to 3
             const filtered = relatedResponse.data.docs
