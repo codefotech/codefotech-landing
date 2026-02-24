@@ -16,6 +16,17 @@ import {
   Hospital,
   Stethoscope,
   Pill,
+  Briefcase,
+  Globe,
+  Palette,
+  Layout,
+  Target,
+  Calendar,
+  Rocket,
+  Megaphone,
+  Cpu,
+  ShoppingBag,
+  Smartphone,
   type LucideIcon,
 } from "lucide-react";
 
@@ -731,6 +742,449 @@ export const productCategories: ProductCategory[] = [
               "Auto Reorder",
               "Return Management",
               "Regulatory Compliance",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "portfolio",
+    name: "Business Portfolio",
+    description:
+      "Professional portfolio and showcase solutions for businesses and agencies",
+    icon: Briefcase,
+    subcategories: [
+      {
+        id: "corporate-portfolio",
+        name: "Corporate Portfolio",
+        description:
+          "Enterprise-grade portfolio sites for established businesses",
+        icon: Globe,
+        products: [
+          {
+            id: "corp-showcase",
+            name: "CorpShowcase",
+            tagline: "Enterprise Business Portfolio Platform",
+            description:
+              "A polished, enterprise-ready portfolio platform that highlights company milestones, case studies, client logos, and team profiles. Built for credibility and lead generation.",
+            image:
+              "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
+            features: [
+              "Case Study Builder",
+              "Client Logo Showcase",
+              "Awards & Recognition Section",
+              "Team & Leadership Profiles",
+              "News & Press Room",
+              "Contact & RFQ Forms",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "brand-presence",
+            name: "BrandPresence Pro",
+            tagline: "Corporate Identity & Portfolio Site",
+            description:
+              "Establish a strong online brand identity with customizable templates, brand color systems, and multi-language support tailored for global enterprises.",
+            image:
+              "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop",
+            features: [
+              "Brand Color & Font System",
+              "Multi-language Support",
+              "Custom Domain Mapping",
+              "Analytics Dashboard",
+              "SEO Management",
+              "CMS-powered Content",
+            ],
+          },
+          {
+            id: "impact-report",
+            name: "ImpactReport Web",
+            tagline: "Annual Report & CSR Portfolio",
+            description:
+              "Showcase your company's impact, sustainability initiatives, and annual achievements through interactive, data-driven web reports.",
+            image:
+              "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+            features: [
+              "Interactive Data Visualizations",
+              "CSR & Sustainability Pages",
+              "Infographic Builder",
+              "PDF Export",
+              "Year-over-Year Comparisons",
+              "Investor Relations Section",
+            ],
+          },
+        ],
+      },
+      {
+        id: "creative-agency",
+        name: "Creative Agency Portfolio",
+        description:
+          "Visually stunning portfolio solutions for design and creative agencies",
+        icon: Palette,
+        products: [
+          {
+            id: "agency-canvas",
+            name: "AgencyCanvas",
+            tagline: "Creative Agency Portfolio Platform",
+            description:
+              "A visually rich portfolio platform designed for creative agencies. Showcase projects with full-screen galleries, video reels, and client testimonials.",
+            image:
+              "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop",
+            features: [
+              "Full-screen Project Galleries",
+              "Video Reel Player",
+              "Client Testimonials",
+              "Services & Pricing Pages",
+              "Team Portfolio Profiles",
+              "Dribbble/Behance Integration",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "studio-folio",
+            name: "StudioFolio",
+            tagline: "Design Studio Showcase",
+            description:
+              "A minimal, high-impact portfolio for design studios with project filtering, mood boards, and downloadable capability decks.",
+            image:
+              "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=400&fit=crop",
+            features: [
+              "Project Filtering by Type",
+              "Mood Board Gallery",
+              "Downloadable Capability Deck",
+              "Process & Approach Pages",
+              "Awards Wall",
+              "Blog & Insights",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "landing-pages",
+    name: "Landing Pages",
+    description:
+      "High-converting landing page solutions for marketing, events, and campaigns",
+    icon: Layout,
+    subcategories: [
+      {
+        id: "lead-generation",
+        name: "Lead Generation",
+        description: "Optimized pages for capturing and converting leads",
+        icon: Target,
+        products: [
+          {
+            id: "lead-blitz",
+            name: "LeadBlitz",
+            tagline: "Conversion-Optimized Lead Pages",
+            description:
+              "Build high-converting lead capture pages with A/B testing, heatmaps, and CRM integrations out of the box.",
+            image:
+              "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=600&h=400&fit=crop",
+            features: [
+              "Drag & Drop Page Builder",
+              "A/B Testing Engine",
+              "Heatmap Analytics",
+              "CRM & Email Integrations",
+              "Multi-step Forms",
+              "Lead Scoring Triggers",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "funnel-craft",
+            name: "FunnelCraft",
+            tagline: "Sales Funnel Landing System",
+            description:
+              "Design complete sales funnels with optin pages, upsell flows, and thank-you pages that guide visitors into qualified leads.",
+            image:
+              "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop",
+            features: [
+              "Funnel Flow Builder",
+              "Upsell & Downsell Pages",
+              "Countdown Timers",
+              "Exit-intent Popups",
+              "Payment Integration",
+              "Conversion Analytics",
+            ],
+          },
+          {
+            id: "webinar-gate",
+            name: "WebinarGate",
+            tagline: "Webinar Registration Landing Pages",
+            description:
+              "Dedicated landing pages for webinar sign-ups with speaker bios, agenda sections, and automated confirmation emails.",
+            image:
+              "https://images.unsplash.com/photo-1558403194-611308249627?w=600&h=400&fit=crop",
+            features: [
+              "Registration Form Builder",
+              "Speaker & Agenda Sections",
+              "Automated Email Confirmations",
+              "Countdown to Event",
+              "Replay Page Support",
+              "Zoom/Teams Integration",
+            ],
+          },
+        ],
+      },
+      {
+        id: "event-campaign",
+        name: "Event & Campaign Pages",
+        description:
+          "Dedicated pages for events, product launches, and marketing campaigns",
+        icon: Calendar,
+        products: [
+          {
+            id: "event-spark",
+            name: "EventSpark",
+            tagline: "Event Landing Page Builder",
+            description:
+              "Create stunning event landing pages with ticketing, speaker profiles, schedules, and sponsor showcases.",
+            image:
+              "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+            features: [
+              "Ticketing & RSVP Integration",
+              "Speaker Profile Cards",
+              "Schedule & Agenda Builder",
+              "Sponsor Logo Section",
+              "Map & Venue Details",
+              "Social Share Tools",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "campaign-burst",
+            name: "CampaignBurst",
+            tagline: "Seasonal Campaign Pages",
+            description:
+              "Launch time-sensitive campaign pages for sales, holidays, and promotions with built-in urgency mechanics.",
+            image:
+              "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=400&fit=crop",
+            features: [
+              "Countdown & Urgency Bars",
+              "Promo Code Display",
+              "Animated Hero Banners",
+              "Social Proof Widgets",
+              "Retargeting Pixel Support",
+              "One-click Duplication",
+            ],
+          },
+        ],
+      },
+      {
+        id: "product-launch",
+        name: "Product Launch Pages",
+        description: "Dedicated pre-launch and launch pages for new products",
+        icon: Rocket,
+        products: [
+          {
+            id: "launch-pad",
+            name: "LaunchPad",
+            tagline: "Product Launch & Pre-launch Pages",
+            description:
+              "Build anticipation with coming-soon pages featuring email waitlists, teaser videos, and early-access sign-ups.",
+            image:
+              "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=600&h=400&fit=crop",
+            features: [
+              "Coming Soon Timer",
+              "Waitlist / Early Access Form",
+              "Teaser Video Embed",
+              "Referral Invite System",
+              "Progress / Milestone Bar",
+              "Press Kit Section",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "reveal-page",
+            name: "RevealPage",
+            tagline: "Product Reveal & Announcement",
+            description:
+              "Drive buzz on launch day with reveal pages featuring animated product showcases, press coverage, and instant buy buttons.",
+            image:
+              "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600&h=400&fit=crop",
+            features: [
+              "Animated Product Reveal",
+              "Press Quote Highlights",
+              "Influencer Review Embeds",
+              "Instant Buy / CTA Buttons",
+              "Share & Go-viral Tools",
+              "Live Sale Counter",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "product-marketing",
+    name: "Product Marketing Pages",
+    description:
+      "Dedicated marketing sites and micro-sites for SaaS, physical goods, and mobile apps",
+    icon: Megaphone,
+    subcategories: [
+      {
+        id: "saas-marketing",
+        name: "SaaS Product Marketing",
+        description: "Marketing sites tailored for software and SaaS products",
+        icon: Cpu,
+        products: [
+          {
+            id: "saas-launch-site",
+            name: "SaaSLaunchSite",
+            tagline: "Complete SaaS Marketing Website",
+            description:
+              "A full-featured marketing website for SaaS products with hero sections, feature highlights, pricing tables, testimonials, and onboarding CTAs.",
+            image:
+              "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+            features: [
+              "Feature Highlight Sections",
+              "Animated Demo Previews",
+              "Pricing Table Builder",
+              "Testimonials & Case Studies",
+              "Integration Showcase Grid",
+              "Free Trial / Sign-up CTA",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "comparison-page",
+            name: "CompareEdge",
+            tagline: "SaaS Comparison & Alternatives Page",
+            description:
+              "Win competitive searches with custom comparison pages that position your product against rivals using feature matrices and user reviews.",
+            image:
+              "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&h=400&fit=crop",
+            features: [
+              "Feature Comparison Matrix",
+              "Competitor Page Templates",
+              "SEO-optimized Structure",
+              "User Review Aggregator",
+              "Migration Guide Section",
+              "Trust Badge Display",
+            ],
+          },
+          {
+            id: "changelog-hub",
+            name: "ChangelogHub",
+            tagline: "Product Updates & Roadmap Page",
+            description:
+              "Keep customers engaged with a public changelog, roadmap voting, and release notes pages that build product transparency.",
+            image:
+              "https://images.unsplash.com/photo-1484788984921-03950022c9ef?w=600&h=400&fit=crop",
+            features: [
+              "Public Changelog Feed",
+              "Feature Voting Board",
+              "Roadmap Timeline",
+              "Email Digest for Updates",
+              "Release Notes Archive",
+              "Widget Embed Support",
+            ],
+          },
+        ],
+      },
+      {
+        id: "physical-products",
+        name: "Physical Product Marketing",
+        description:
+          "Persuasive product pages for physical goods and consumer products",
+        icon: ShoppingBag,
+        products: [
+          {
+            id: "product-spotlight",
+            name: "ProductSpotlight",
+            tagline: "Single Product Marketing Page",
+            description:
+              "A dedicated marketing page for a single physical product with 360° views, spec sheets, lifestyle photography, and social proof.",
+            image:
+              "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=400&fit=crop",
+            features: [
+              "360° Product Viewer",
+              "Lifestyle & Studio Gallery",
+              "Tech Spec Sheet",
+              "Video Explainer Section",
+              "Reviews & Ratings",
+              "Retailer / Buy Now Links",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "collection-micro",
+            name: "CollectionMicro",
+            tagline: "Product Collection Micro-site",
+            description:
+              "Launch a branded micro-site for a product line or collection with interactive catalog browsing and direct-to-consumer checkout.",
+            image:
+              "https://images.unsplash.com/photo-1487252665478-49b61b47f302?w=600&h=400&fit=crop",
+            features: [
+              "Interactive Catalog Browser",
+              "Color & Variant Selector",
+              "Comparison Within Collection",
+              "Direct-to-Consumer Checkout",
+              "Loyalty & Bundle Offers",
+              "Influencer UGC Wall",
+            ],
+          },
+          {
+            id: "unboxing-page",
+            name: "UnboxingPage",
+            tagline: "Premium Unboxing & Packaging Story",
+            description:
+              "Tell the story of your product's premium packaging and craftsmanship with scroll-driven animations and behind-the-scenes content.",
+            image:
+              "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=600&h=400&fit=crop",
+            features: [
+              "Scroll-driven Animations",
+              "Packaging Story Section",
+              "Manufacturing / Craft Story",
+              "Materials & Sustainability Info",
+              "Gift Configuration Tool",
+              "Press & Media Mentions",
+            ],
+          },
+        ],
+      },
+      {
+        id: "mobile-apps",
+        name: "Mobile App Marketing",
+        description: "App landing pages and marketing sites for mobile products",
+        icon: Smartphone,
+        products: [
+          {
+            id: "app-landing",
+            name: "AppLanding",
+            tagline: "Mobile App Marketing Site",
+            description:
+              "Drive app store downloads with a compelling marketing site featuring screenshots, feature tours, and platform-specific CTAs for iOS and Android.",
+            image:
+              "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop",
+            features: [
+              "Device Mockup Showcase",
+              "App Store & Play Store CTAs",
+              "Feature Tour Slider",
+              "User Reviews Integration",
+              "App Preview Video",
+              "Press & Award Badges",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "app-update-page",
+            name: "AppUpdatePage",
+            tagline: "App Version & Feature Announcement",
+            description:
+              "Announce major app updates with dedicated pages highlighting new features, migration guides, and user upgrade prompts.",
+            image:
+              "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=600&h=400&fit=crop",
+            features: [
+              "What's New Section",
+              "Before / After Comparison",
+              "Migration Guide",
+              "In-app Deep Link CTAs",
+              "Video Walkthrough",
+              "Beta Feedback Collection",
             ],
           },
         ],
