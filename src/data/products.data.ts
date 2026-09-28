@@ -27,6 +27,10 @@ import {
   Cpu,
   ShoppingBag,
   Smartphone,
+  HeartHandshake,
+  HandCoins,
+  HandHeart,
+  HandHelping,
   type LucideIcon,
 } from "lucide-react";
 
@@ -742,6 +746,147 @@ export const productCategories: ProductCategory[] = [
               "Auto Reorder",
               "Return Management",
               "Regulatory Compliance",
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "charity",
+    name: "Charity & Non-profit",
+    description:
+      "Digital solutions for charity foundations, NGOs, and non-profit organizations",
+    icon: HeartHandshake,
+    subcategories: [
+      {
+        id: "donation-fundraising",
+        name: "Donation & Fundraising",
+        description:
+          "Online giving and fundraising platforms for charities and foundations",
+        icon: HandCoins,
+        products: [
+          {
+            id: "give-hub",
+            name: "GiveHub",
+            tagline: "Online Donation & Fundraising Platform",
+            description:
+              "Accept one-time and recurring donations through branded donation pages, run fundraising campaigns with live goal tracking, and send instant receipts to every donor.",
+            image:
+              "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=600&h=400&fit=crop",
+            features: [
+              "Branded Donation Pages",
+              "Recurring Donations",
+              "Campaign Goal Tracking",
+              "Automated Receipts",
+              "Multiple Payment Gateways",
+              "Peer-to-Peer Fundraising",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "donor-connect",
+            name: "DonorConnect CRM",
+            tagline: "Donor Relationship Management",
+            description:
+              "Build lasting relationships with supporters through complete donor profiles, giving history, segmentation, and targeted appeal campaigns.",
+            image:
+              "https://images.unsplash.com/photo-1579208575657-c595a05383b7?w=600&h=400&fit=crop",
+            features: [
+              "Complete Donor Profiles",
+              "Giving History & Pledges",
+              "Donor Segmentation",
+              "Email & SMS Appeals",
+              "Major Gift Pipeline",
+              "Donor Retention Analytics",
+            ],
+          },
+        ],
+      },
+      {
+        id: "charity-websites",
+        name: "Charity & Foundation Websites",
+        description:
+          "Mission-driven websites for foundations and charitable organizations",
+        icon: HandHeart,
+        products: [
+          {
+            id: "foundation-site",
+            name: "FoundationSite",
+            tagline: "Charity Foundation Website Platform",
+            description:
+              "A mission-focused website for charity foundations with cause pages, impact stories, event listings, and a donate button on every page.",
+            image:
+              "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=400&fit=crop",
+            features: [
+              "Cause & Campaign Pages",
+              "Impact Stories & Galleries",
+              "Built-in Donate Button",
+              "Events & News Section",
+              "Transparency & Annual Reports",
+              "Multi-language Support",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "cause-page",
+            name: "CausePage",
+            tagline: "Emergency Appeal & Relief Pages",
+            description:
+              "Launch dedicated appeal pages in minutes for disaster relief, medical aid, or seasonal campaigns, with live progress bars and social sharing to spread the word fast.",
+            image:
+              "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=600&h=400&fit=crop",
+            features: [
+              "Appeal Page Templates",
+              "Live Progress Tracker",
+              "Beneficiary Stories",
+              "Social Sharing Tools",
+              "Donor Wall & Recognition",
+              "Mobile-first Donation Flow",
+            ],
+          },
+        ],
+      },
+      {
+        id: "volunteer-program",
+        name: "Volunteer & Program Management",
+        description:
+          "Tools to coordinate volunteers, programs, and beneficiary services",
+        icon: HandHelping,
+        products: [
+          {
+            id: "volunteer-hub",
+            name: "VolunteerHub",
+            tagline: "Volunteer Management System",
+            description:
+              "Recruit, schedule, and engage volunteers with online sign-ups, shift management, hour tracking, and recognition tools.",
+            image:
+              "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop",
+            features: [
+              "Online Volunteer Sign-up",
+              "Shift & Event Scheduling",
+              "Volunteer Hours Tracking",
+              "Skills-based Matching",
+              "Group Messaging",
+              "Recognition & Certificates",
+            ],
+            highlighted: true,
+          },
+          {
+            id: "program-pulse",
+            name: "ProgramPulse",
+            tagline: "Program & Grant Management",
+            description:
+              "Manage programs, beneficiaries, and grants in one place, and turn field data into impact reports for donors, boards, and regulators.",
+            image:
+              "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=400&fit=crop",
+            features: [
+              "Beneficiary Management",
+              "Program Tracking",
+              "Grant Management",
+              "Budget & Fund Tracking",
+              "Impact Measurement Dashboards",
+              "Donor & Board Reports",
             ],
           },
         ],
